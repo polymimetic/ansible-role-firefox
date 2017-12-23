@@ -1,0 +1,59 @@
+---
+# defaults file for firefox
+
+firefox_home: "{{ ansible_env.HOME }}/.mozilla/firefox"
+
+firefox_dependencies:
+  - python-xmltodict
+  - python-requests
+
+firefox_packages:
+  - firefox
+  - firefox-locale-en
+
+firefox_addons_dir: /usr/lib/firefox-addons/extensions
+firefox_global_addons:
+  - { url: "https://addons.mozilla.org/firefox/downloads/file/794480/ublock_origin-1.14.20-an+fx.xpi", guid: "uBlock0@raymondhill.net" } # uBlock Origin
+  - { url: "https://addons.mozilla.org/firefox/downloads/file/784111/https_everywhere-2017.11.21-an+fx.xpi", guid: "https-everywhere@eff.org" } # HTTPS Everywhere
+
+firefox_harden: true
+firefox_global_prefs: /etc/firefox/firefox.js
+
+#  - name: alice
+#    extensions:
+#      - random-agent-spoofer
+#  - name: bob
+#    extensions: []
+firefox_profiles:
+  - name: default
+    extensions:
+      - lastpass-password-manager
+      # - bitwarden-password-manager
+      # - ublock-origin
+      - user-agent-switcher-revived
+      - privacy-badger17
+      # - https-everywhere
+      - decentraleyes
+      - google-search-link-fix
+      - link-cleaner
+      - https-by-default
+      - noscript
+      - canvasblocker
+      - lightbeam
+      - umatrix
+      - smart-referer
+      - violentmonkey
+
+#  browser.search.defaultenginename: "'DuckDuckGo'"
+firefox_preferences: {}
+
+#  alice:
+#    browser.safebrowsing.enabled: 'false'
+#    browser.safebrowsing.malware.enabled: 'false'
+firefox_profile_preferences:
+  default:
+    geo.ip: 'false'
+    browser.safebrowsing.enabled: 'false'
+    browser.safebrowsing.malware.enabled: 'false'
+    browser.search.defaultenginename: "'DuckDuckGo'"
+    browser.startup.homepage: "'https://www.startpage.com'"
